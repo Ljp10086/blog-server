@@ -17,6 +17,10 @@ exports.CategorySchema = new mongoose_1.Schema({
         required: false,
         default: 0,
     },
+    coverPic: {
+        type: String,
+        required: false,
+    },
     isDeleted: {
         type: Boolean,
         required: false,

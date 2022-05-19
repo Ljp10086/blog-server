@@ -4,6 +4,7 @@ export interface CategoryInterface extends Document {
     name: string;
     hot?: number;
     count?: number;
+    coverPic?: string;
     createDate?: Date;
     updateDate?: Date;
     isDeleted?: boolean;

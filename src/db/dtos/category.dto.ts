@@ -17,6 +17,10 @@ export class CategoryDto {
   createDate?: Date;
 
   @IsOptional()
+  @IsString()
+  coverPic?: string;
+
+  @IsOptional()
   updateDate?: Date;
 
   @IsOptional()

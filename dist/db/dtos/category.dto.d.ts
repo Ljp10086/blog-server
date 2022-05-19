@@ -4,6 +4,7 @@ export declare class CategoryDto {
     hot?: number;
     count?: number;
     createDate?: Date;
+    coverPic?: string;
     updateDate?: Date;
     isDeleted?: boolean;
 }

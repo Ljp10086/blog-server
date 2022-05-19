@@ -14,7 +14,7 @@ const openapi = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CategoryDto {
     static _OPENAPI_METADATA_FACTORY() {
-        return { _id: { required: false, type: () => String }, name: { required: true, type: () => String }, hot: { required: false, type: () => Number }, count: { required: false, type: () => Number }, createDate: { required: false, type: () => Date }, updateDate: { required: false, type: () => Date }, isDeleted: { required: false, type: () => Boolean } };
+        return { _id: { required: false, type: () => String }, name: { required: true, type: () => String }, hot: { required: false, type: () => Number }, count: { required: false, type: () => Number }, createDate: { required: false, type: () => Date }, coverPic: { required: false, type: () => String }, updateDate: { required: false, type: () => Date }, isDeleted: { required: false, type: () => Boolean } };
     }
 }
 __decorate([
@@ -37,6 +37,11 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
 ], CategoryDto.prototype, "createDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CategoryDto.prototype, "coverPic", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
