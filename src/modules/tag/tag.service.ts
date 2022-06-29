@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { PageDto } from 'src/db/dtos/page.dto';
 import { TagDto } from 'src/db/dtos/tag.dto';
 import { TagInterface } from 'src/db/interfaces/tag.interface';
 
@@ -11,8 +12,16 @@ export class TagService {
     private readonly tagModel: Model<TagInterface>,
   ) {}
 
-  async getAllTags() {
-    return await this.tagModel.find({ isDeleted: false });
+  async getTagsWithPage({ pageNum, pageSize }: PageDto) {
+    const list = await this.tagModel
+      .find({ isDeleted: false })
+      .sort({ _id: -1 })
+      .skip((pageNum - 1) * pageSize)
+      .limit(pageSize)
+      .exec();
+    console.log(pageNum, pageSize);
+    const total = await this.tagModel.countDocuments({ isDeleted: false });
+    return { list, total };
   }
 
   async getAllTagById(id: string) {

@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { PageDto } from 'src/db/dtos/page.dto';
 import { TagDto } from 'src/db/dtos/tag.dto';
 import { Common } from 'src/types';
 import { TagService } from './tag.service';
@@ -7,9 +8,9 @@ import { TagService } from './tag.service';
 export class TagController {
   constructor(private readonly tagService: TagService) {}
 
-  @Get('getTags')
-  async getAllTags() {
-    return this.tagService.getAllTags();
+  @Post('getTagsByPage')
+  async getTagsWithPage(@Body() pageDto: PageDto) {
+    return this.tagService.getTagsWithPage(pageDto);
   }
 
   @Get('getTagById/:id')

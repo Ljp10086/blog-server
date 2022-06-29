@@ -40,7 +40,6 @@ export class BlogService {
         userId: userInfo._id,
         blogId: { $in: blogs.map((blog) => blog._id) },
       });
-      console.log(likes);
       blogs.forEach((blog) => {
         (blog as any)._doc.isUserLike =
           likes.find((like) => like.blogId.toString() === blog._id.toString())
@@ -110,7 +109,6 @@ export class BlogService {
     if (blogLike && blogLike.isLike === blogLikeDto.isLike) {
       return true;
     }
-    console.log(blogLike);
     if (blogLike) {
       await this.blogLikeModel.updateOne(
         { _id: blogLike._id },

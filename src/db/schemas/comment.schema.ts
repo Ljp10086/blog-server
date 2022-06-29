@@ -1,4 +1,5 @@
-import { Schema } from 'mongoose';
+import { Schema, Types } from 'mongoose';
+import { UserSchema } from './user.schema';
 
 export const CommentSchema = new Schema(
   {
@@ -7,11 +8,12 @@ export const CommentSchema = new Schema(
       required: true,
     },
     pid: {
-      type: String,
+      type: Types.ObjectId,
       required: false,
     },
-    userId: {
-      type: String,
+    user: {
+      type: Types.ObjectId,
+      ref: 'user',
       required: true,
     },
     blogId: {
@@ -46,3 +48,12 @@ export const CommentSchema = new Schema(
     versionKey: false,
   },
 );
+
+CommentSchema.virtual('children', {
+  ref: 'comment',
+  localField: '_id',
+  foreignField: 'pid',
+  justOne: false,
+});
+
+CommentSchema.set('toJSON', { virtuals: true });

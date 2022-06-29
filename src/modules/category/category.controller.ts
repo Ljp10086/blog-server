@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CategoryDto } from 'src/db/dtos/category.dto';
+import { PageDto } from 'src/db/dtos/page.dto';
 import { Common } from 'src/types';
 import { CategoryService } from './category.service';
 
@@ -7,9 +8,9 @@ import { CategoryService } from './category.service';
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
-  @Get('getCategory')
-  async getAllTags() {
-    return this.categoryService.getCategory();
+  @Post('getCategoryByPage')
+  async getAllCategory(@Body() body: PageDto) {
+    return this.categoryService.getCategory(body);
   }
 
   @Get('getCategoryById/:id')

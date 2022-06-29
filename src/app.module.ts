@@ -13,7 +13,6 @@ import { AdminModule } from './modules/admin/admin.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.MONGOOSE_URL),
     GithubSsoModule,
     RedisModule,
     BlogModule,
@@ -21,6 +20,7 @@ import { AdminModule } from './modules/admin/admin.module';
     CategoryModule,
     CommentModule,
     AdminModule,
+    MongooseModule.forRoot(process.env.MONGOOSE_URL),
   ],
   controllers: [AppController],
   providers: [AppService],
